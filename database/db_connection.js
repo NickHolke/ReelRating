@@ -24,7 +24,7 @@ const Movie = mongoose.model('Movie', movieSchema);
 
 const save = (movieData) => {
   let movie = new Movie(movieData);
-  return movie.save(movie)
+  return movie.save(movie);
 };
 
 const getAll = () => {
