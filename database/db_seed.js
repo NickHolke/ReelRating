@@ -1,23 +1,6 @@
 const unirest = require('unirest');
-const API_KEY = '1aa4b71d59342b08b19dea8b16bcf4aa';
-const baseURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 const { save } = require('./db_connection');
-
-save({
-  Title: 'Test Movie',
-  Year: '1969',
-  Runtime: '1 hours',
-  Genre: 'comedy',
-  Director: 'John',
-  Plot: 'A gripping thriller that will knock your socks off.',
-  Awards: 'Emmy',
-  Poster: 'http:posterpsth',
-  InternetMovieDatabase: '98',
-  RottenTomatoes: '12',
-  MetaCritic: '14',
-  imdbRating: '16',
-  reelRating: '43',
-})
+const { formatHelper } = require('./formatHelper');
 
 let req = unirest("GET", "https://movie-database-imdb-alternative.p.rapidapi.com/");
 
@@ -32,7 +15,5 @@ req.headers({
 });
 
 req.end((res) => {
-  console.log(res.body);
+  save(formatHelper(res.body));
 })
-
-//poster path http://image.tmdb.org/t/p/w185///kmcqlZGaSh20zpTbuoF0Cdn07dT.jpg

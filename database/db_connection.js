@@ -13,11 +13,11 @@ const movieSchema = mongoose.Schema({
   Plot: String,
   Awards: String,
   Poster: String,
-  InternetMovieDatabase: String,
-  RottenTomatoes: String,
-  MetaCritic: String,
-  imdbRating: String,
-  reelRating: String,
+  InternetMovieDatabase: Number,
+  RottenTomatoes: Number,
+  MetaCritic: Number,
+  imdbRating: Number,
+  reelRating: Number,
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
