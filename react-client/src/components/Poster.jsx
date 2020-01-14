@@ -4,8 +4,14 @@ import styled from 'styled-components';
 const Image = styled.img`
   height: 310px;
   width: 240px;
-  padding: 6px;
+  margin: 6px;
   cursor: pointer;
+  box-shadow: 2px 2px 2px 1px grey;
+  transition: all 0.3s ease-in-out; 
+  &:hover {
+    box-shadow: 2px 4px 4px 2px grey;
+    transform: scale(1.02);
+  } 
 `;
 
 const Rating = styled.div`
