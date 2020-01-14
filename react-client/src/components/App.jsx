@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Poster from './Poster.jsx';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import MovieData from './MovieData.jsx';
 
 const PosterContainer = styled.div`
   display: flex;
@@ -21,6 +22,8 @@ const LogoContainer = styled.div`
 
 const App = () => {
   let [movies, setMovies] = useState([]);
+  let [showData, setShowData] = useState(false);
+  let [currentMovie, setCurrentMovie] = useState({});
 
   useEffect(() => {
     axios.get('/movies')
@@ -30,12 +33,17 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const toggleData = (movie) => {
+    setShowData(!showData);
+    setCurrentMovie(movie)
+  }
+
   return (
     <div>
       <LogoContainer><Logo src="logo.png"></Logo></LogoContainer>
-      
+      {showData && <MovieData movie={currentMovie} toggleData={toggleData}></MovieData>}
       <PosterContainer>
-        {movies.map((movie, idx) => <Poster movie={movie} key={idx}/>)}
+        {movies.map((movie, idx) => <Poster movie={movie} key={idx} toggleData={toggleData}/>)}
       </PosterContainer>
     </div>
   ) 
