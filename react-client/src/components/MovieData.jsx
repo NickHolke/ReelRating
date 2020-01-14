@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 1050px;
+  width: 60%;
   height: 500px;
   background: black;
   position: fixed;
   color: white;
-  margin: auto;
+  margin-left: 20%;
+  margin-top: -10%;
   z-index: 3;
 `
 
