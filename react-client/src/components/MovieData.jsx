@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   color: white;
   margin-left: 20%;
   margin-top: -10%;
-  z-index: 3;
+  z-index: 10;
   font-size: 24px;
   border-radius: 10px;
   line-height: 1.4;
