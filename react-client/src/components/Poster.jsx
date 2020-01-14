@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const Poster = ({ movie }) => (
-  <div>
-    <img src={movie.Poster}></img>
-  </div>
-);
+const Image = styled.img`
+  height: 300px;
+  width: 220px;
+  padding: 6px;
+  cursor: pointer;
+`;
+
+const Rating = styled.div`
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  background: black;
+  color: white;
+  text-align: center;
+  margin-top: -50px;
+  margin-left: 185px;
+  font-size: 30px;
+`
+
+const Poster = ({ movie }) => {
+  let [showData, setShowData] = useState(false);
+
+  return (
+    <div>
+      <Image src={movie.Poster} onClick={() => setShowData(true)}></Image>
+      <Rating>{movie.reelRating}</Rating>
+    </div>
+  );
+}
+
 
 export default Poster;
