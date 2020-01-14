@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Poster from './Poster.jsx';
+import styled from 'styled-components'
+
+const PosterContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 80px 0 80px;
+`
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -15,7 +24,9 @@ const App = () => {
 
   return (
     <div>
-      {movies.map((movie) => <Poster movie={movie}/>)}
+      <PosterContainer>
+        {movies.map((movie) => <Poster movie={movie}/>)}
+      </PosterContainer>
     </div>
   ) 
 };
