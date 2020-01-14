@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import MovieData from './MovieData.jsx'
 
 const Image = styled.img`
-  height: 300px;
-  width: 220px;
+  height: 310px;
+  width: 240px;
   padding: 6px;
   cursor: pointer;
 `;
@@ -16,16 +17,15 @@ const Rating = styled.div`
   color: white;
   text-align: center;
   margin-top: -50px;
-  margin-left: 185px;
+  margin-left: 205px;
   font-size: 30px;
 `
 
-const Poster = ({ movie }) => {
-  let [showData, setShowData] = useState(false);
-
+const Poster = ({ movie, toggleData }) => {
+  
   return (
     <div>
-      <Image src={movie.Poster} onClick={() => setShowData(true)}></Image>
+      <Image src={movie.Poster} onClick={() => toggleData(movie)}></Image>
       <Rating>{movie.reelRating}</Rating>
     </div>
   );
