@@ -58,25 +58,63 @@ const App = () => {
     setMovies(newMovies);
   }
 
+  const genreSelect = (e) => {
+    let genre = e.target.value, newMovies;
+
+    if (genre === 'genre') {
+      newMovies = movies.map((movie) => {
+        movie.show = true;
+        return movie;
+      })
+    } else {
+      newMovies = movies.map((movie) => {
+        if (!movie.Genre.includes(genre)) {
+          movie.show = false;
+        } else {
+          movie.show = true;
+        }
+        return movie;
+      })
+    }
+    setMovies(newMovies)
+  }
+
   return (
     <div>
-      
         <LogoContainer showData={showData}>
           <Logo src="logo.png"></Logo>
-          
-          {/* <button onClick={()=> sortMovies()}>sort</button> */}
           <DropDown>
-          <select onChange={sortMovies}>
-            <option value="sort">Sort By</option>
-            <option value="highest">Highest Rating</option>
-            <option value="lowest">Lowest Rating</option>
-          </select>
-        </DropDown>
+            <select onChange={sortMovies}>
+              <option value="sort">Popularity</option>
+              <option value="highest">Highest Rated</option>
+              <option value="lowest">Lowest Rated</option>
+            </select>
+          </DropDown>
+          <DropDown>
+            <select onChange={genreSelect}>
+              <option value="genre">Genre</option>
+              <option value="Action">Action</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Horror">Horror</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Crime">Crime</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Drama">Drama</option>
+              <option value="Music">Music</option>
+              <option value="Romance">Romance</option>
+              <option value="Biography">Biography</option>
+            </select>
+          </DropDown>
         </LogoContainer>
-        
-          {showData && <MovieData movie={currentMovie} toggleData={toggleData}></MovieData>}
+        {showData && <MovieData movie={currentMovie} toggleData={toggleData}></MovieData>}
         <PosterContainer showData={showData}>
-          {movies.map((movie, idx) => <Poster movie={movie} key={idx} toggleData={toggleData}/>)}
+          {movies.map((movie, idx) => {
+            if (movie.show) {
+              return <Poster movie={movie} key={idx} toggleData={toggleData}/>
+            }
+          })}
         </PosterContainer>
     </div>
   ) 
