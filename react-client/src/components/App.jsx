@@ -24,6 +24,12 @@ const LogoContainer = styled.div`
   opacity: ${(props) => props.showData ? 0.5 : 1};
 `
 
+const DropDown = styled.div`
+  width: 100px;
+  margin: auto;
+  padding-bottom: 5px;
+`
+
 const App = () => {
   let [movies, setMovies] = useState([]);
   let [showData, setShowData] = useState(false);
@@ -42,9 +48,32 @@ const App = () => {
     setCurrentMovie(movie)
   }
 
+  const sortMovies = (e) => {
+    let unsorted = [...movies], newMovies
+    if (e.target.value === 'highest') {
+      newMovies = unsorted.sort((movie1, movie2) => movie2.reelRating - movie1.reelRating);
+    } else {
+      newMovies = unsorted.sort((movie1, movie2) => movie1.reelRating - movie2.reelRating);
+    }
+    setMovies(newMovies);
+  }
+
   return (
     <div>
-        <LogoContainer showData={showData}><Logo src="logo.png"></Logo></LogoContainer>
+      
+        <LogoContainer showData={showData}>
+          <Logo src="logo.png"></Logo>
+          
+          {/* <button onClick={()=> sortMovies()}>sort</button> */}
+          <DropDown>
+          <select onChange={sortMovies}>
+            <option value="sort">Sort By</option>
+            <option value="highest">Highest Rating</option>
+            <option value="lowest">Lowest Rating</option>
+          </select>
+        </DropDown>
+        </LogoContainer>
+        
           {showData && <MovieData movie={currentMovie} toggleData={toggleData}></MovieData>}
         <PosterContainer showData={showData}>
           {movies.map((movie, idx) => <Poster movie={movie} key={idx} toggleData={toggleData}/>)}
