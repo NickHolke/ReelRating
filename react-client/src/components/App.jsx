@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Poster from './Poster.jsx';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -10,8 +11,13 @@ const App = () => {
         setMovies(res.data)
       })
       .catch((err) => console.log(err));
-  })
-  return <div>hello</div>
+  }, []);
+
+  return (
+    <div>
+      {movies.map((movie) => <Poster movie={movie}/>)}
+    </div>
+  ) 
 };
 
 export default App;
