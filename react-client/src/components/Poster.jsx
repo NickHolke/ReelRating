@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Image = styled.img`
   height: 300px;
   width: 220px;
-  padding: 5px;
-  
+  padding: 6px;
+  cursor: pointer;
 `;
 
 const Rating = styled.div`
@@ -20,11 +20,16 @@ const Rating = styled.div`
   font-size: 30px;
 `
 
-const Poster = ({ movie }) => (
-  <div>
-    <Image src={movie.Poster}></Image>
-    <Rating>{movie.reelRating}</Rating>
-  </div>
-);
+const Poster = ({ movie }) => {
+  let [showData, setShowData] = useState(false);
+
+  return (
+    <div>
+      <Image src={movie.Poster} onClick={() => setShowData(true)}></Image>
+      <Rating>{movie.reelRating}</Rating>
+    </div>
+  );
+}
+
 
 export default Poster;
